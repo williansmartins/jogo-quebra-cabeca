@@ -24,7 +24,7 @@ $(function () {
         snapMode: "inner"
     });
 
-    $(".origem").draggable({
+    $(".origem1, .origem2").draggable({
         // snap: ".destino",
         // snapMode: "inner",
         // snapTolerance: 50,
@@ -34,10 +34,32 @@ $(function () {
         cursor: "move",
     });
 
-    $(".destino").droppable({
+    $(".destino1").droppable({
     	tolerance: "pointer",
         drop: function(event, ui) {
-        	$( ".origem" ).draggable( "destroy" );
+        	$( ".origem1" ).draggable( "destroy" );
+
+            var $this = $(this);
+            $this.append(ui.draggable);  
+
+            var width = $this.width();
+            var height = $this.height();
+            var cntrLeft = (width / 2) - (ui.draggable.width() / 2);
+            var cntrTop = (height / 2) - (ui.draggable.height() / 2);
+            
+            ui.draggable.css({
+                left: cntrLeft + "px",
+                top: cntrTop + "px"
+            });
+
+            //som
+            sound1.play();
+        },
+    });
+    $(".destino2").droppable({
+        tolerance: "pointer",
+        drop: function(event, ui) {
+            $( ".origem2" ).draggable( "destroy" );
 
             var $this = $(this);
             $this.append(ui.draggable);  
