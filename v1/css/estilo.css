@@ -1,0 +1,63 @@
+.brilho{
+    background-image: url("../img/gif1.gif");
+    width: 71px;
+    height: 100px;
+}
+.square, .peca {
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    border: 1px solid black;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    text-align: center;
+    float: left;
+    background-color: lightblue;
+    cursor: pointer;
+    font-weight: bold;
+}
+ 
+.squaredotted, .buraco {
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    border: 1px dotted gray;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    text-align: center;
+    float: left;
+    color: gray;
+    background-color: lightgray;
+}
+
+.wrapper{
+    background-image: url("../img/background-leve.jpg");
+    background-repeat: no-repeat;
+    width: 391px;
+    height: 789px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.origem, .destino{
+    width: 238px;
+    height: 306px;
+    /*outline: solid 1px red;*/
+    position: absolute;
+}
+
+.origem{
+    background-image: url("../img/objeto1.png");
+    left: 10px;
+    top: 20px;
+}
+
+.destino{
+    left: 78px;
+    top: 444px;
+}
+
+.ui-state-hover{
+    outline: solid 4px yellow;
+    background: transparent;
+}

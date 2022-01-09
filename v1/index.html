@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+		<style>
+			body{
+			 font-family:sans-serif;
+			}
+			h1 {
+			  margin: 5px 0;
+			}
+			h3 {
+			  margin:0;
+			  font-size:16px;
+			}
+			.box {
+				background-color: #91e600;
+				text-align: center;
+				font-family: Asap, Avenir, Arial, sans-serif;
+				width: 100px;
+				height: 50px;
+				line-height: 50px;
+				color: black;
+				position: absolute;
+				-webkit-border-radius: 10px;
+				-moz-border-radius: 10px;
+				border-radius: 10px;
+			}
+
+			.dragger1{
+				  top:10px;
+			  left:10px;
+			}
+			.dragger2{
+				  top:70px;
+			  left:10px;
+			}
+
+			.target {
+				background-color: #CCC;
+				text-align: center;
+				font-family: Asap, Avenir, Arial, sans-serif;
+				width: 100px;
+				height: 50px;
+				line-height: 50px;
+				color: black;
+				position: absolute;
+				-webkit-border-radius: 10px;
+				-moz-border-radius: 10px;
+				border-radius: 10px;
+			}
+
+			#target1{
+				  top:10px;
+			  left:300px;
+			}
+
+
+
+			#target2{
+				  top:160px;
+			  left:340px;
+			}
+
+
+			#target3{
+				  top:260px;
+			  left:140px;
+			}
+
+
+			.showOver{
+			  background-color: red;
+			}
+
+
+			#demo {
+			  width:800px;
+			  height:400px;
+			  background-color:black;
+			  position:relative;
+			}
+
+
+
+		</style>
+	</head>
+	<body>
+		<audio controls>
+		  <source src="sons/Pop-PhoenixJ-8164_hifi.mp3" type="audio/mpeg">
+			Your browser does not support the audio element.
+		</audio>
+		<button onclick="acao()">buik</button>
+
+		<div id="demo">
+		  <div class="box dragger1">Drag 1</div>
+		  <div class="box dragger2">Drag 2</div>
+		  
+		    <div id="target1" class="target">Target 1</div>
+		    <div id="target2" class="target">Target 2</div>
+		    <div id="target3" class="target">Target 3</div>
+		</div>
+
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script type="text/javascript" src="http://www.greensock.com/js/src/plugins/ThrowPropsPlugin.min.js"></script>
+		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+		<script type="text/javascript" src="http://www.greensock.com/js/src/utils/Draggable.min.js"></script>
+
+		<script>
+			var sound1 = new Audio("sons/Pop-PhoenixJ-8164_hifi.mp3"); 
+			sound1.msAudioCategory = "SoundEffect";
+			sound1.load(); //For pre-loading media
+
+			sound1.play(); //At any later time, as in button click handler
+
+			function acao() {
+				sound1.play();
+			}
+
+			var targets = $(".target");
+			var overlapThreshold = "50%"; 
+
+			Draggable.create(".box", {
+			  bounds:"#demo",
+			  edgeResistance:0.65,
+			  type:"x,y",
+			  throwProps:true,
+			  onDragStart:function(e) {
+			    
+			  },
+			  onDrag:function(e) {
+			    for(var i=0; i<targets.length;i++){
+			      if (this.hitTest(targets[i], overlapThreshold)) {
+			         $(targets[i]).addClass("showOver");
+			       } else {
+			         $(targets[i]).removeClass("showOver");
+			       }
+			    }
+			  },
+			  onDragEnd:function(e) {
+			    var snapMade = false;
+			    for(var i=0; i<targets.length;i++){
+			      if(this.hitTest(targets[i], overlapThreshold)){
+			        var p = $(targets[i]).position();
+			        TweenLite.to(e.target,0.1, {x:p.left, y:p.top});
+			        snapMade = true;
+			      }
+			    }
+			    if(!snapMade){
+			        TweenLite.to(e.target,0.1, {x:10, y:10});
+			    }
+			  }
+					})
+
+
+
+
+
+
+
+
+		</script>
+	</body>
+</html>
