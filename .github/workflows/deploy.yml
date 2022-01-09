@@ -1,0 +1,19 @@
+on: push
+name: 🚀 deploy automatizado (html simples)
+jobs:
+  FTP-Deploy-Action:
+    name: FTP-Deploy-Action
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: FTP-Deploy-Action
+      uses: SamKirkland/FTP-Deploy-Action@2.0.0
+      env:
+        FTP_SERVER: apps.pwms.com.br
+        FTP_USERNAME: apps1
+        FTP_PASSWORD: K5^@P&%6Osu3kFB0oycx
+        LOCAL_DIR: .
+        REMOTE_DIR: /srv/apps.pwms.com.br/www/jogo-quebra-cabeca
+        METHOD: sftp
+        PORT: 22
+        ARGS: --verbose          
