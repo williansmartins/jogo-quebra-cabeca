@@ -11,7 +11,7 @@ jobs:
       env:
         FTP_SERVER: apps.pwms.com.br
         FTP_USERNAME: apps1
-        FTP_PASSWORD: K5^@P&%6Osu3kFB0oycx
+        FTP_PASSWORD: ${{ secrets.ftp_password }}
         LOCAL_DIR: .
         REMOTE_DIR: /srv/apps.pwms.com.br/www/jogo-quebra-cabeca
         METHOD: sftp
